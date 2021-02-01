@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Bitter:400,700&display=swap&subset=latin-ext"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="index2.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/3414cae6ee.js" crossorigin="anonymous"></script>
+    <title>Music Player 2</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+    </style>
+</head>
+
+<body>
+    <div class="wrapper" id="app">
+        <div class="player">
+            <div id="search-box" class="search-box">
+                <input type="text" placeholder="Search Any Song ...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="player__top">
+
+                <div class="player-cover">
+                    <transition-group :name="transitionName">
+                        <div class="player-cover__item" v-if="$index === currentTrackIndex"
+                            :style="{ backgroundImage: `url(${track.cover})` }" v-for="(track, $index) in tracks"
+                            :key="$index">
+                        </div>
+                    </transition-group>
+                </div>
+                <div class="player-controls">
+                    <div class="icon i1">
+
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+
+                    </div>
+                    <div class="icon i2">
+
+                        <i class="fa fa-external-link" aria-hidden="true"></i>
+
+                    </div>
+                    <div class="icon i3">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+
+
+                    </div>
+                    <div class="icon i4">
+
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+
+                    </div>
+                    <div class="i5">
+                        <i class="fa fa-play-circle-o i5" aria-hidden="true"></i>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="progress" ref="progress">
+                <div class="progress__top">
+                    <div class="album-info" v-if="currentTrack">
+                        <div class="album-info__name">Music Name</div>
+                        <div class="album-info__track">Music Artist</div>
+                    </div>
+                    <div class="progress__duration">4:20</div>
+                </div>
+                <div class="progress__bar" @click="clickProgress">
+                    <div class="progress__current" :style="{ width : barWidth }"></div>
+                </div>
+                <div class="progress__time">0:00</div>
+            </div>
+            <div v-cloak></div>
+        </div>
+    </div>
+</body>
+
+</html>
